@@ -38,6 +38,22 @@ Feature: Manage project on BizDev
     Then user login successfully and redirect to main page
     When user turn on the solution
 
+  Scenario: User edit name the project
+    Given user go to the login page
+    When user enters valid username then click continue
+    Then page recognizes the exist user
+    When user enters valid password and click continue
+    Then user login successfully and redirect to main page
+    When user edit name the project
+
+  Scenario: User edit desc the project
+    Given user go to the login page
+    When user enters valid username then click continue
+    Then page recognizes the exist user
+    When user enters valid password and click continue
+    Then user login successfully and redirect to main page
+    When user edit desc the project
+
   Scenario: User delete the project
     Given user go to the login page
     When user enters valid username then click continue
