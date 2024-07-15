@@ -8,34 +8,26 @@ const loginPage = new LoginPage();
 const mainPage = new MainPage();
 const configPage = new ConfigPage();
 
-Given("user go to the login page", () => {
+Given("user go to the login page and redirect to main page", () => {
   cy.visit(loginPage.getUrl);
   cy.wait(3000);
-});
 
-When("user enters valid username then click continue", () => {
   cy.enter(loginPage.getIframe).then((getBody) => {
     getBody().find(loginPage.getInputField).type(data.credentials.username);
     getBody().find(loginPage.getSubmitBtn).click();
     cy.wait(2000);
   });
-});
 
-Then("page recognizes the exist user", () => {
   cy.enter(loginPage.getIframe).then((getBody) => {
     getBody().xpath(loginPage.getExistUser).should("be.visible");
   });
-});
 
-When("user enters valid password and click continue", () => {
   cy.enter(loginPage.getIframe).then((getBody) => {
     getBody().find(loginPage.getInputField).type(data.credentials.password);
     getBody().find(loginPage.getSubmitBtn).click();
     cy.wait(3000);
   });
-});
 
-Then("user login successfully and redirect to main page", () => {
   cy.url().should("equal", mainPage.getUrl);
 });
 
@@ -57,6 +49,7 @@ When("user turn off the solution", () => {
   cy.wait(3000);
 
   cy.get(mainPage.getToggleBizCRM).click();
+  cy.wait(1000);
 });
 
 //================================================================
@@ -67,17 +60,17 @@ When("user turn on the solution", () => {
   cy.wait(3000);
 
   cy.get(mainPage.getToggleBizCRM).click();
+  cy.wait(1000);
 });
 
 //================================================================
 
 When("user edit name the project", () => {
-  const nameProject = "huynq";
+  const nameProject = "a";
   cy.get(mainPage.getChoosingProjectDropdown).click({ force: true });
   cy.get(mainPage.getBizFlyMarketingOption).click();
   cy.wait(3000);
 
-  cy.get(mainPage.getToggleBizCRM).click();
   cy.get(configPage.getButtonConfig).click();
   cy.wait(1000);
   cy.get(configPage.getButtonEditName).click();
@@ -85,18 +78,16 @@ When("user edit name the project", () => {
   cy.get(configPage.getInputNameProject).clear().type(nameProject);
   cy.get(configPage.getButtonSubmitNameProject).click();
   cy.wait(1000);
-  //   cy.get(configPage.getTextNameProject).should("have.text", nameProject);
 });
 
 //================================================================
 
 When("user edit desc the project", () => {
-  const nameProject = "huynq";
+  const nameProject = "a";
   cy.get(mainPage.getChoosingProjectDropdown).click({ force: true });
   cy.get(mainPage.getBizFlyMarketingOption).click();
   cy.wait(3000);
 
-  cy.get(mainPage.getToggleBizCRM).click();
   cy.get(configPage.getButtonConfig).click();
   cy.wait(1000);
   cy.get(configPage.getButtonEditDesc).click();
@@ -104,7 +95,6 @@ When("user edit desc the project", () => {
   cy.get(configPage.getInputProjectDesc).clear().type(nameProject);
   cy.get(configPage.getButtonSubmitDesc).click();
   cy.wait(1000);
-  //   cy.get(configPage.getTextProjectDesc).should("have.text", nameProject);
 });
 
 //================================================================
@@ -114,7 +104,6 @@ When("user delete the project", () => {
   cy.get(mainPage.getBizFlyMarketingOption).click();
   cy.wait(3000);
 
-  cy.get(mainPage.getToggleBizCRM).click();
   cy.get(configPage.getButtonConfig).click();
   cy.wait(1000);
   cy.get(configPage.getButtonRemoveProject).click();
