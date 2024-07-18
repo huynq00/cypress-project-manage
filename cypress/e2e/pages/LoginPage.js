@@ -7,7 +7,7 @@ const submitBtn = 'button';
 export class LoginPage {
 
     get getUrl() {
-        return url;
+        return cy.visit(url);
     }
 
     get getIframe() {
