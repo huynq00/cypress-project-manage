@@ -9,7 +9,11 @@ async function setupNodeEvents(on, config) {
   return config;
 }
 
+// npx cypress run --record --key 6e53459a-459a-45b7-b6ea-c884359abcf4
+// 6e53459a-459a-45b7-b6ea-c884359abcf4
+
 module.exports = defineConfig({
+  projectId: "8dnqbs",
   e2e: {
     // setupNodeEvents(on, config) {
     //   // implement node event listeners here
